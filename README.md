@@ -90,19 +90,19 @@ About 24 requests across both routes. This is a small, hand-built test set meant
 
 1. **Paraphrases and unrelated queries separate cleanly.** True paraphrases scored 0.006 to 0.106 and unrelated queries 0.49 or higher, so 0.15 sits comfortably between them.
 2. **The embedding model does not reliably encode time.** "Today" vs "tomorrow" scored 0.114 and "price of Bitcoin" vs "price of Bitcoin yesterday" scored 0.159. Both are at or inside the FAQ threshold, which is why time-sensitive queries need the tight `typical` route.
-3. **A false miss is cheap and a false hit is costly.** A false miss costs a few seconds. A false hit returns a wrong answer. In the overlap zone (about 0.15 to 0.17) the cache errs toward missing.
+3. **A false miss is cheap and a false hit is costly.** A false miss costs a few seconds. A false hit returns a wrong answer. In the overlap zone (about 0.15 to 0.17) the cache errors toward missing.
 4. **Confusable pairs are separable, with a modest margin.** A true paraphrase scored 0.162 (ATM vs "Automated Teller Machine") and a wrong pair scored 0.237 (UPI PIN vs ATM PIN).
 
 ## Tech stack
 
-Java, Spring Boot, Python, FastAPI, sentence-transformers (`all-MiniLM-L6-v2`), Redis 8 with RediSearch, Lombok.
+Java, Spring Boot, Python, FastAPI, sentence-transformers (`all-MiniLM-L6-v2`), Redis 8.6.1 with RediSearch, Lombok.
 
 ## Project structure
 
 ```
 .
-├── spring-proxy/      # Spring Boot orchestrator (routes, thresholds, Redis access)
-├── python-service/    # FastAPI embedding service + LLM origin service
+├── SemanticCaching/      # Spring Boot orchestrator (routes, thresholds, Redis access)
+├── Python-microservice/    # FastAPI embedding service + LLM origin service
 └── README.md
 ```
 
@@ -164,4 +164,4 @@ Example response:
 - Bypass the cache before embedding for time-sensitive words (today, yesterday, now).
 - Larger labelled evaluation set with a threshold sweep per route.
 - Request coalescing for simultaneous identical queries.
-- Optional re-ranking of borderline matches with a cross-encoder.
+
