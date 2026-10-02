@@ -149,6 +149,25 @@ Example response:
   "query": "How to reset UPI PIN?"
 }
 ```
+## Screenshots
+
+Same question in different words: the first request misses and calls the LLM, the second hits the cache and returns almost instantly.
+
+<table>
+  <tr>
+    <td align="center"><b>Cache miss</b> ("What does CPU stand for?")</td>
+    <td align="center"><b>Cache hit</b> ("What is the full form of CPU?")</td>
+  </tr>
+  <tr>
+    <td><img width="420" alt="Cache miss" src="https://github.com/user-attachments/assets/a8080f9e-c917-42b0-87c1-815b0314cfb4" /></td>
+    <td><img width="420" alt="Cache hit" src="https://github.com/user-attachments/assets/f6624ff8-2f59-4c8b-b958-bdd822d97107" /></td>
+  </tr>
+</table>
+
+
+
+
+
 
 ## Limitations
 
